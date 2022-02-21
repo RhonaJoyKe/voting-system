@@ -11,7 +11,12 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
-
+from decouple import config
+import cloudinary
+import os
+import cloudinary.uploader
+import cloudinary.api
+from django.forms import Media
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-yi4y&nb=j#k=9(p-@llv$phku(2_fvi-fnuv4s%(l3bxx=*(&u'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -32,6 +37,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'app',
+    'cloudinary',
     'django.contrib.admin',
     'registration',
     'django.contrib.auth',
@@ -39,6 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+     'bootstrap4'
 ]
 
 MIDDLEWARE = [
@@ -52,6 +60,11 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'project.urls'
+cloudinary.config(
+    cloud_name="dbalxadqx",
+    api_key="888255573867367",
+    api_secret="Ii9nAE7eZU9vii96eyeCDb8WlZ0",
+)
 
 TEMPLATES = [
     {
@@ -77,8 +90,12 @@ WSGI_APPLICATION = 'project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'Voting',
+        'USER': 'postgres',
+        'PASSWORD': 'Password1234',
+        'HOST':'172.16.58.242',
+        'PORT':'5432'
     }
 }
 
@@ -117,9 +134,21 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
+STATICFILES_DIRS = [
+   
+   os.path.join(BASE_DIR,'static')
+]
+
+
+
 STATIC_URL = 'static/'
+
+STATIC_ROOT=os.path.join(BASE_DIR,'assets')
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+AUTH_USER_MODEL = 'app.User'
