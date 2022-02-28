@@ -91,10 +91,10 @@ WSGI_APPLICATION = 'project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Voting',
+        'NAME': 'votes',
         'USER': 'postgres',
-        'PASSWORD': 'Password1234',
-        'HOST':'172.16.58.242',
+        'PASSWORD': '12345',
+        'HOST':'localhost',
         'PORT':'5432'
     }
 }
@@ -151,4 +151,5 @@ STATIC_ROOT=os.path.join(BASE_DIR,'assets')
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-AUTH_USER_MODEL = 'app.User'
+
+LOGIN_REDIRECT_URL = ''

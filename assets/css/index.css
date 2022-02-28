@@ -1,0 +1,15 @@
+/* body{
+    margin: 0;
+    padding: 0;
+    box-sizing: content-box;
+} */
+#homepage{
+    background-image:url("/static/background4.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    min-width: 1024px;
+
+
+}
